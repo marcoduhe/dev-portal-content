@@ -5,20 +5,16 @@ hidden: true
 createdAt: "2022-02-22T22:28:50.366Z"
 updatedAt: "2022-08-19T18:42:00.613Z"
 ---
->❗ This feature is in closed beta phase, meaning we are working to improve it. Do not share this documentation with people outside of your company.
 
 VTEX’s Profile System provides APIs that enable stores to:
 - Deal with a single source of truth for shoppers’ data.
 - [Safely store](https://developers.vtex.com/vtex-rest-api/docs/data-privacy) PII and sensitive information.
 
+>❗ This feature is in closed beta phase, meaning we are working to improve it. Do not share this documentation with people outside of your company.
+
 Below you can learn more about some of the Profile System’s features and how to integrate with the APIs.
 
-[block:callout]
-{
-  "type": "warning",
-  "body": "Data stored in the new Profile System is not related to documents saved in Master Data v1 or v2. The API endpoints and features described in this article only apply to documents registered in the new Profile System."
-}
-[/block]
+>⚠️ Data stored in the new Profile System is not related to documents saved in Master Data v1 or v2. The API endpoints and features described in this article only apply to documents registered in the new Profile System."
 
 >❗ When implementing your integration:
 >
@@ -36,12 +32,8 @@ To use the Profile System features, ensure you have the appropriate [License Man
 | Profile System | Documents | Save and Update Item | Edit items from Profile System. |
 | Profile System | Documents | Delete Item | Delete items from Profile System. |
 
-[block:callout]
-{
-  "type": "info",
-  "body": "Learn more about License Manager [roles](https://help.vtex.com/tutorial/roles--7HKK5Uau2H6wxE1rH5oRbc) and [resources](https://help.vtex.com/tutorial/license-manager-resources--3q6ztrC8YynQf6rdc6euk3)."
-}
-[/block]
+>ℹ️ Learn more about License Manager [roles](https://help.vtex.com/tutorial/roles--7HKK5Uau2H6wxE1rH5oRbc) and [resources](https://help.vtex.com/tutorial/license-manager-resources--3q6ztrC8YynQf6rdc6euk3)."
+
 ## TTL
 
 Profile System documents have a defined TTL, which means Time To Live. This means that whenever a customer creates a profile, it will be deleted after the TTL has passed from the time of its creation.
@@ -119,11 +111,25 @@ Unmasked profile
 }
 ```
 
+## Auditability
+
+Whenever an integration or a person retrieves unmasked Profile System data, VTEX logs an event on the [Audit module](https://help.vtex.com/en/tutorial/searching-for-events-on-audit--5RXf9WJ5YLFBcS8q8KcxTA). These are the events related to the Profile System that you can find on the Audit module:
+
+| **Action**                   | **Event description**                                | **Event details**                     |
+|------------------------------|------------------------------------------------------|---------------------------------------|
+| GetAddressUnmasked           | Retrieval of an unmasked address by ID.              | Address ID.                           |
+| GetAddressVersionUnmasked    | Retrieval of an unmasked address by ID and version.  | Address ID and version ID.            |
+| GetPickupInfoUnmasked        | Retrieval of unmasked pickup information.            | Pickup point ID.                      |
+| GetPickupInfoVersionUnmasked | Retrieval of unmasked pickup information by version. | Pickup point ID and version ID.       |
+| GetProfileUnmasked           | Retrieval of an unmasked profile by ID.              | Profile ID.                           |
+| GetProfileVersionUnmasked    | Retrieval of an unmasked profile by ID and version.  | Profile ID and version ID.            |
+| EmailRectification           | Change existing email address.                       | ID of user whose email was rectified. |
+
+>ℹ️ Audit also registers events related to other VTEX platform operations. See the complete [Audit event list](https://help.vtex.com/en/tutorial/events-available-in-audit--6r1Mzcu5NmkmmDLJlz9CCZ).
 
 ## API integration
 
 There are several APIs you can integrate with in order to manage information regarding profiles and addresses. Below you can find some examples and links to the detailed API reference.
-
 
 ### Profiles
 
